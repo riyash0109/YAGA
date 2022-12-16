@@ -19,6 +19,79 @@ def form(request):
     return render(request, 'getText.html' , params)
 
 
+#########################################################################################################################
+
+def search2(request):
+    from collections import defaultdict
+    slots = defaultdict(list)
+    h = 9
+    m = 0
+    # slots = {}
+    for i in range(14):
+        if(h == 13):
+            h+=1
+
+    print("SLOT ",i+1," at ",h,":",m)
+    slots[i].append(h)
+    slots[i].append(m)
+    m += 30
+    if(m==60):
+        m = 0 
+        h += 1
+
+    # print(slots)
+    # slots are represented in manner daynumber_slotnumber. Each slot will be multiplied by 12(for each quater)
+    st = ["chandra,sentilnathan,rohini","chandra,rohini,sagaya","chandra,sagaya,sentilnathan"]
+    tch = defaultdict(list)
+    n = 1
+    # while(n):
+    #   t = input("Teacher code : ")
+    #   s = input("Teacher slots seperated by commas")
+    #   tch[t].append(s)
+    #   n = int(input("0 : Exit\n1 : To continue "))
+    tch = {'chandra': ['112,115,118,313'], 'sentilnathan': ['112,116,412,118'], 'sagaya': ['116,313,513,118'], 'rohini': ['112,,313,116,514']}
+    # print(tch)
+    # c = [11,12,53,54,56]
+    # d = [12,13,55,47,54]
+    # e = [11,12,53,36,28,43,54]
+
+    # for i in tch['c']:
+    #   print(i)
+    st = ["chandra,sentilnathan,rohini","chandra,rohini,sagaya","chandra,sagaya,sentilnathan"]
+    # print(st)
+    nm = ["Yash","Akshay","Gyan"]
+    j = 0
+    pt = []
+    for i in st:
+    
+        l = i.split(",")
+        # print("s",l)
+        t1 = []
+        t2 = []
+        t3 = []
+        for i in tch[l[0]]:
+            t1 = i.split(",")
+        for i in tch[l[1]]:
+            t2 = i.split(",")
+        for i in tch[l[2]]:
+            t3 = i.split(",")
+            # print(t1)
+        # print(t1)
+        for i in t1:
+            # print(tch[l[1]])
+            if (i in t2 and i in t2):
+                # print("For ",nm[j]," Available slots are : ",i)
+                s = "For "+nm[j]+" Available slots are : "+i
+                pt.append(s)
+        j +=1 
+
+    return render(request, 'new_results.html', {"result" : pt})
+
+
+
+###################################################search 1 function#####################################################
+
+
 
 def search1(request):
 
@@ -34,6 +107,7 @@ def search1(request):
         return render(request, 'result.html', {"result" : "!!!INVALID INPUT!!!"})
 
 
+###################################################################################################################################3
 
 def search(request):
     s1 = request.GET["s1"]
