@@ -131,7 +131,8 @@ def search(request):
     from sklearn.decomposition import TruncatedSVD
     from nltk.corpus import stopwords
 
-    nltk.download('all')
+    # nltk.download('all')
+    nltk.download ('stopwords')
 
     df = pd.read_csv('firstProject\profile.csv')
     # df.head()
